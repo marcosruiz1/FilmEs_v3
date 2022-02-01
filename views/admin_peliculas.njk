@@ -1,0 +1,21 @@
+{% extends "admin_base.njk" %}
+{% block titulo %} Peliculas | Listado{% endblock %}
+{% block contenido %}
+    <h1>Listado de películas</h1>
+    <div>
+        <ul>
+            {% for pelicula in peliculas %}
+                <li>{{ pelicula.titulo }}</li>
+                <li>{{ pelicula.sinopsi }}</li>
+                <li>{{ pelicula.duracion }}</li>
+                <li>{{ pelicula.genero }}</li>
+                <li>{{ pelicula.imagen }}</li>
+                <a class="btn btn-success" href="/peliculas/{{pelicula.id}}">Ver Ficha</a>
+                <form action="/peliculas/{{pelicula.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="btn btn-danger">Borrar</button>
+                </form>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

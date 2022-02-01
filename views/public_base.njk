@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            {% block titulo %}{% endblock %}
+        </title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <a class="btn btn-success" href="/">Inicio</a>
+        <a class="btn btn-success" href="/peliculas">Ver Ficha</a>
+        <div class="container">
+            {% block contenido %}{% endblock %}
+        </div>
+    </body>
+</html>

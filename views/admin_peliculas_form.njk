@@ -1,0 +1,33 @@
+{% extends "admin_base.njk" %}
+{% block titulo %} Peliculas | Update{% endblock %}
+{% block contenido %}
+    <h1>Modificación de nueva película</h1>
+    <form action="/peliculas/{{pelicula.id}}" method="put">
+        <div class="form-group">
+            <label for="titulo">Titulo:</label>
+            <input type="text" class="form-control" name="titulo"
+                text={{pelicula.titulo}}/>
+        </div>
+        <div class="form-group">
+            <label for="sinopsi">Sinopsis:</sinopsi>
+            <input type="text" class="form-control" name="sinopsi"
+                 text={{pelicula.sinopsi}}/>
+        </div>
+        <div class="form-group">
+            <label for="duracion">Duración:</label>
+            <input type="number" class="form-control" name="duracion"
+                text={{pelicula.duracion}}/>
+        </div>
+        <div class="form-group">
+            <label for="plataforma">Plataforma:</label>
+            <input type="number" class="form-control" name="plataforma"
+                text={{pelicula.plataforma}}/>
+        </div>
+        <div class="form-group">
+            <label for="director">Director:</label>
+            <input type="number" class="form-control" name="director"
+                text={{pelicula.director}}/>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+{% endblock %}

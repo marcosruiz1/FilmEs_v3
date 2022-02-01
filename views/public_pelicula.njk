@@ -1,0 +1,15 @@
+{% extends "public_base.njk" %}
+{% block titulo %}Pelicula | Ficha{% endblock %}
+{% block contenido %}
+    <h1>Ficha de película</h1>
+    <div>
+        <ul>
+            <li>Titulo: {{ pelicula.titulo }}</li>
+            <li>Sinopsi: {{ pelicula.sinopsi }}</li>
+            <li>Duracion: {{ pelicula.duracion }}</li>
+            <li>Genero: {{ pelicula.genero }}</li>
+            <li>Imagen: {{ pelicula.imagen }}</li>
+            <li>Director: {{ pelicula.Director }}</li>
+        </ul>
+    </div>
+{% endblock %}
