@@ -5,10 +5,11 @@
             {% block titulo %}{% endblock %}
         </title>
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/public/css/estilos.css"/>
+        
     </head>
     <body>
-        <a class="btn btn-success" href="/">Inicio</a>
-        <a class="btn btn-success" href="/peliculas">Ver Ficha</a>
+        {% include "public_menu.njk" %}
         <div class="container">
             {% block contenido %}{% endblock %}
         </div>

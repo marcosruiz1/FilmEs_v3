@@ -7,7 +7,6 @@ const methodOverride = require('method-override');
 
 // Enrutadores
 const peliculas = require(__dirname + '/routes/peliculas');
-const directores = require(__dirname + '/routes/directores');
 const usuarios = require(__dirname + '/routes/auth');
 const public = require(__dirname + '/routes/public');
 
@@ -16,32 +15,29 @@ const public = require(__dirname + '/routes/public');
 mongoose.connect('mongodb://localhost:27017/FilmEsV3', { useNewUrlParser: true });
 let app = express();
 
-// Establecer motor de plantillas
-app.set("view engine", "njk");
+// Asignación del motor de plantillas
+app.set('view engine', 'njk');
+// Configuramos motor Nunjucks
 nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
 
+
+// Cargar middleware body-parser para peticiones POST y PUT
+// y enrutadores
+app.use(express.json());
+app.use(express.urlencoded());
+// Middleware para procesar otras peticiones que no sean GET o POST
 app.use(methodOverride(function(req, res) {
-    if (req.body && typeof req.body === 'object' &&
-        '_method' in req.body) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         let method = req.body._method;
         delete req.body._method;
         return method;
     }
 }));
 
-// Carga de middleware y enrutadores
-app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use('/peliculas', peliculas);
-app.use('', public);
-app.use('/directores', directores);
-app.use('/usuarios', usuarios);
-app.use('', usuarios);
-
+app.use(methodOverride('_method'));
 
 // Configuración de la sesión en la aplicación
 app.use(session({
@@ -59,6 +55,19 @@ app.use((req, res, next) => {
     res.locals.session = req.session;
     next();
 });
+
+
+
+// Carga de middleware y enrutadores
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/public', express.static(__dirname + '/public'));
+app.use('/admin', peliculas);
+app.use('', public);
+app.use('/usuarios', usuarios);
+app.use('', usuarios);
+
+
+
 
 // Puesta en marcha del servidor
 app.listen(8080);

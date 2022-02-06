@@ -1,17 +1,29 @@
 {% extends "public_base.njk" %}
 {% block titulo %} Peliculas | Listado{% endblock %}
 {% block contenido %}
-    <h1>Listado de películas</h1>
-    <div>
-        <ul>
-            {% for pelicula in peliculas %}
-                <li>{{ pelicula.titulo }}</li>
-                <li>{{ pelicula.sinopsi }}</li>
-                <li>{{ pelicula.duracion }}</li>
-                <li>{{ pelicula.genero }}</li>
-                <li>{{ pelicula.imagen }}</li>
-                <a class="btn btn-success" href="/peliculas/{{pelicula.id}}">Ver Ficha</a>
-            {% endfor %}
-        </ul>
-    </div>
+    <div class="bloque">
+        <h1>Listado de películas</h1>
+        <form style="display:inline" action="/buscar" method="post">
+            <input type="text" name="busqueda" placeholder="Busca por nombre..." />
+            <button type="submit" class="btn btn-danger">Buscar</button>
+        </form>
+        <div class="tabla">        
+                {% for pelicula in peliculas %}
+                    <table width="100%">
+                        <tr>
+                            {% if loop.index % 2 == 0 %}
+                                <td class="par">{{ pelicula.titulo }}</td>
+                            {% else %}
+                                <td class="impar">{{ pelicula.titulo }}</td>
+                            {% endif %}
+                            <td>
+                                <a class="btn btn-success" href="/pelicula/{{pelicula.id}}">Ver Ficha</a>
+                            </td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <p>No hay películas</p>
+                {% endfor %}      
+        </div>
+    </div>  
 {% endblock %}

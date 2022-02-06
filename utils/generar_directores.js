@@ -12,7 +12,7 @@ let director1 = new Director({
 director1.save();
 
 let director2 = new Director({
-    nombre: 'Luisdasdasd',
+    nombre: 'Luis Benito',
     nacimiento: Date.now()
 });
 director2.save();

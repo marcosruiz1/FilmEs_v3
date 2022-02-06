@@ -6,22 +6,52 @@ let router = express.Router();
 // /
 router.get('/', (req, res) => {
     Pelicula.find().then(resultado => {
-        res.render('public_index', { peliculas: resultado });
+        if (resultado.length > 0) {
+            res.render('public_index', { peliculas: resultado });
+        } else {
+            res.render('public_error', { error: "No se encontraron películas" });
+        }
+
     }).catch(error => {
-        res.render('error');
+        res.render('public_error');
     });
 });
 
 // /buscar
+router.post('/buscar', (req, res) => {
+    Pelicula.find({ titulo: req.body.busqueda }).then(resultado => {
+        if (resultado.length > 0) {
+            res.render('public_index', { peliculas: resultado });
+        } else {
+            res.render('public_error', { error: "No se encontraron películas" });
+        }
+
+    }).catch(error => {
+        console.log(error);
+        res.render('public_error');
+    });
+});
+
 
 
 // /pelicula/:id
-router.get('/:id', (req, res) => {
-    Pelicula.findById(req.params.id).then(resultado => {
-        res.render('public_pelicula', { pelicula: resultado });
-    }).catch(error => {
-        res.render('error');
-    });
+router.get('/pelicula/:id', (req, res) => {
+
+    Pelicula.findById(req.params.id)
+        .populate('plataforma')
+        .populate('director')
+        .then(resultado => {
+            if (resultado) {
+                res.render('public_pelicula', { pelicula: resultado });
+            } else {
+
+                res.render('public_error', { error: "Película no encontrada" });
+            }
+
+        }).catch(error => {
+            console.log(error);
+            res.render('public_error');
+        });
 });
 
 

@@ -1,0 +1,68 @@
+.menu {
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkMenu {
+    text-decoration: none;
+    margin-right: 20px;
+    color: rgb(233, 233, 233);
+    font-size: 20px;
+}
+
+.linkMenu:hover {
+    color: rgb(177, 177, 177);
+}
+
+.mAdmin {
+    background-color: rgb(66, 146, 238);
+}
+
+.bloque {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tabla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 800px;
+}
+
+.par {
+    width: 80%;
+    background-color: #999999;
+    color: white;
+}
+
+.impar {
+    width: 80%;
+    background-color: #cccccc;
+    color: black;
+}
+
+.tdAdmin {
+    display: flex;
+    flex-direction: row;
+}
+
+.plat {
+    margin-left: 40px;
+}
+
+.boton {
+    margin-top: 15px;
+}
+
+.logout {
+    float: right;
+}

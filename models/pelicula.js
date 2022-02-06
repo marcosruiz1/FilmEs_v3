@@ -37,7 +37,7 @@ let peliculaSchema = new moongose.Schema({
     },
     genero: {
         type: String,
-        enum: ["comedia", "terror", "drama", "aventuras", "otras"]
+        enum: ["Comedia", "Terror", "Drama", "Aventuras", "Otras"]
     },
     imagen: {
         type: String,
